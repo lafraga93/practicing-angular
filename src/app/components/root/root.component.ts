@@ -8,9 +8,7 @@ import { Component } from "@angular/core";
 })
 
 export class RootComponent {
-  constructor(
-    private transferService: TransferService
-  ) {}
+  constructor(private transferService: TransferService) {}
 
   getTransfer($event: any): void {
     this.transferService.add($event)

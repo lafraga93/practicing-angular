@@ -1,3 +1,5 @@
+import { Transfer } from './../../../models/transfer.model';
+import { TransferService } from './../../../services/transfer.service';
 import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
@@ -7,7 +9,7 @@ import { Component, EventEmitter, Output } from "@angular/core";
 })
 
 export class NewTrasnferComponent {
-  @Output() whenDoTransfer = new EventEmitter<any>()
+  constructor(private transferService: TransferService) {}
 
   amount: number = 0
   recipient: string = ''
@@ -15,13 +17,21 @@ export class NewTrasnferComponent {
   doTransfer(): void {
     console.log('Realizando nova transferência')
 
-    this.whenDoTransfer.emit({
+    const payload: Transfer = {
       amount: this.amount,
       recipient: this.recipient,
       date: new Date()
-    })
+    }
 
-    this.resetFields()
+    this.transferService.add(payload).subscribe(
+      (response) => {
+        console.log('[doTransfer]: Http response:', response)
+        this.resetFields()
+      },
+      (error) => {
+        console.log('[doTransfer]: Http POST error details:', error)
+      }
+    )
   }
 
   resetFields(): void {
