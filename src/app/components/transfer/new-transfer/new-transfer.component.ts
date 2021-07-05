@@ -7,20 +7,25 @@ import { Component, EventEmitter, Output } from "@angular/core";
 })
 
 export class NewTrasnferComponent {
-  @Output() whenTransfer = new EventEmitter()
+  @Output() whenDoTransfer = new EventEmitter<any>()
 
-  amount: number = 0;
-  recipient: string = '';
+  amount: number = 0
+  recipient: string = ''
 
-  transfer() {
+  doTransfer(): void {
     console.log('Realizando nova transferência')
 
-    // console.log('Valor: ', this.amount)
-    // console.log('Destino: ', this.recipient)
-
-    this.whenTransfer.emit({
+    this.whenDoTransfer.emit({
       amount: this.amount,
-      recipient: this.recipient
+      recipient: this.recipient,
+      date: new Date()
     })
+
+    this.resetFields()
+  }
+
+  resetFields(): void {
+    this.amount = 0
+    this.recipient = ''
   }
 }
