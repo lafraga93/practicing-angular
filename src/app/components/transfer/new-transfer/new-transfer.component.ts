@@ -1,6 +1,7 @@
 import { Transfer } from './../../../models/transfer.model';
 import { TransferService } from './../../../services/transfer.service';
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component } from "@angular/core";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-new-transfer',
@@ -9,7 +10,10 @@ import { Component, EventEmitter, Output } from "@angular/core";
 })
 
 export class NewTrasnferComponent {
-  constructor(private transferService: TransferService) {}
+  constructor(
+    private transferService: TransferService,
+    private router: Router
+  ) {}
 
   amount: number = 0
   recipient: string = ''
@@ -27,6 +31,7 @@ export class NewTrasnferComponent {
       (response) => {
         console.log('[doTransfer]: Http response:', response)
         this.resetFields()
+        this.router.navigateByUrl('transfers')
       },
       (error) => {
         console.log('[doTransfer]: Http POST error details:', error)

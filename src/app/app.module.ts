@@ -9,6 +9,7 @@ import { TransfersComponent } from './components/transfer/transfers/transfers.co
 import { registerLocaleData } from '@angular/common';
 
 import localePt from '@angular/common/locales/pt';
+import { AppRoutingModule } from './app.routing.module';
 
 registerLocaleData(localePt, 'pt')
 
@@ -19,6 +20,7 @@ registerLocaleData(localePt, 'pt')
     TransfersComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpClientModule
