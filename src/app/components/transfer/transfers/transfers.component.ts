@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./styles/transfers.component.scss']
 })
 export class TransfersComponent implements OnInit {
-  transfers: any[] = []
+  transfers: Transfer[] = []
 
   constructor(private transferService: TransferService) {}
 
